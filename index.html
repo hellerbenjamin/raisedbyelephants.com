@@ -2,12 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Raised by Elephants</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raised by Elephants</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400;600&display=swap"
           rel="stylesheet">
     <style>
@@ -555,18 +551,127 @@
             }
 
             .logo {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
+                width: 40px;
+                height: 40px;
             }
 
+            /* Hero */
+            .hero {
+                padding: 1.5rem;
+            }
+
+            .tagline {
+                letter-spacing: 0.15em;
+            }
+
+            .hero-cta {
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.1rem;
+            }
+
+            /* Sections */
+            .music-section,
+            .shows-section,
+            .band-section,
+            .contact-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                margin-bottom: 2.5rem;
+            }
+
+            /* Albums */
+            .albums {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .album {
+                aspect-ratio: auto;
+                padding: 1.5rem;
+            }
+
+            .album img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Shows */
             .show {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                padding: 1.5rem 0;
             }
 
             .show-date {
                 font-size: 2rem;
+            }
+
+            .show-details h4 {
+                font-size: 1.4rem;
+            }
+
+            /* Band Members */
+            .band-members {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .member-photo {
+                width: 100%;
+                max-width: 160px;
+                height: 240px;
+            }
+
+            .member-name {
+                font-size: 1.2rem;
+            }
+
+            .member-role {
+                font-size: 0.9rem;
+            }
+
+            /* Social Links */
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-links a {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .band-members {
+                grid-template-columns: 1fr;
+            }
+
+            .member-photo {
+                max-width: 200px;
+                height: 300px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -593,7 +698,7 @@
         <p class="tagline">Massive Souls, Soft Footsteps</p>
         <div class="hero-cta">
             <button class="btn">Listen Now</button>
-            <button class="btn btn-secondary">Tour Dates</button>
+            <button class="btn btn-secondary">Shows</button>
         </div>
     </section>
 
@@ -678,7 +783,7 @@
                 <div class="member-photo">
                     <img src="images/eric-lovely.jpg" alt="Band Member">
                 </div>
-                <h3 class="member-name">Eric Lovely</h3>
+                <h3 class="member-name">Eric Lovly</h3>
                 <p class="member-role">Drums</p>
             </div>
         </div>
