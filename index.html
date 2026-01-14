@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Raised by Elephants</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400;600&display=swap"
+          rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #ff6b35;
+            --secondary: #f7931e;
+            --text: #e8e8e8;
+            --muted: #8a8a8a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%23ff6b35" opacity="0.5"/></svg>') 10 10, auto;
+        }
+
+        /* Animated background elephants */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="40">🐘</text></svg>');
+            background-size: 150px;
+            animation: drift 120s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes drift {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 1000px 1000px;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+            background: radial-gradient(ellipse at center, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+        }
+
+        .band-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 15vw, 12rem);
+            line-height: 0.9;
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            animation: fadeSlideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes fadeSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--muted);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            animation: fadeSlideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeSlideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+            opacity: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            border-color: var(--text);
+            color: var(--text);
+        }
+
+        .btn-secondary::before {
+            background: var(--text);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+            animation: fadeSlideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+            opacity: 0;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Music Section */
+        .music-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, var(--primary), rgba(26, 26, 26, 0.8)),
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23ff6b35" opacity="0.02" width="1" height="100"/></svg>');
+            background-size: auto, 50px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .albums {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .album {
+            position: relative;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .album::before {
+            content: '🐘';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .album:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        .album h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .album p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .album img {
+            margin-top: 1em;
+        }
+
+        .album .play-btn {
+            margin-top: 1em;
+            align-self: flex-start;
+            padding: 0.75rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            transition: background 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .album .play-btn:hover {
+            background: var(--secondary);
+        }
+
+        /* Shows Section */
+        .shows-section {
+            padding: 8rem 2rem;
+            background: var(--primary);
+        }
+
+        .shows-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .show {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: 2rem;
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            transition: background 0.3s ease;
+            align-items: center;
+        }
+
+        .show:hover {
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .show-date {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            line-height: 1;
+            color: var(--accent);
+        }
+
+        .show-details h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .show-details p {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .show .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(247, 147, 30, 0.1) 0%, transparent 70%);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 107, 53, 0.2);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            .show {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .show-date {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#music">Music</a>
+    <a href="#shows">Shows</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+    <section class="hero">
+        <h1 class="band-name">RAISED BY<br>ELEPHANTS</h1>
+        <p class="tagline">Never Forget the Sound</p>
+        <div class="hero-cta">
+            <button class="btn">Listen Now</button>
+            <button class="btn btn-secondary">Tour Dates</button>
+        </div>
+    </section>
+
+    <section id="music" class="music-section">
+        <h2 class="section-title">Our Music</h2>
+        <div class="albums">
+
+            <div class="album">
+                <div>
+                    <h3>Wishing Well</h3>
+                    <p>Latest Single • 2025</p>
+                </div>
+                <img src="images/wishing-well-576.jpg" alt="Wishing Well Single Cover">
+                <a href="https://www.youtube.com/watch?v=ldGSJiiD_DI&list=RDldGSJiiD_DI&start_radio=1&pp=ygUhcmFpc2VkIGJ5IGVsZXBoYW50cyB3aXNoaW5nIHdlbGxcoAcB0gcJCU0KAYcqIYzv"
+                   target="_blank" class="play-btn">Play Single</a>
+            </div>
+            <div class="album">
+                <div>
+                    <h3>First Steps...</h3>
+                    <p>EP • 2024</p>
+                </div>
+                <img src="images/first-steps...-576.jpg" alt="Wishing Well Single Cover">
+                <a href="https://www.youtube.com/watch?v=FhbqPWus1CQ&list=OLAK5uy_lreeIhp6QOT0QE4oZnUll9I71pm4evxUc"
+                   target="_blank" class="play-btn">Play Album</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="shows" class="shows-section">
+        <h2 class="section-title">Upcoming Shows</h2>
+        <div class="shows-list">
+            <div class="show">
+                <div class="show-date">
+                    JAN<br>28
+                </div>
+                <div class="show-details">
+                    <h4>The Velvet Underground</h4>
+                    <p>Portland, OR</p>
+                </div>
+                <button class="btn">Tickets</button>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    FEB<br>05
+                </div>
+                <div class="show-details">
+                    <h4>Empire Hall</h4>
+                    <p>Seattle, WA</p>
+                </div>
+                <button class="btn">Tickets</button>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    FEB<br>12
+                </div>
+                <div class="show-details">
+                    <h4>The Roxy Theatre</h4>
+                    <p>Los Angeles, CA</p>
+                </div>
+                <button class="btn">Tickets</button>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    FEB<br>20
+                </div>
+                <div class="show-details">
+                    <h4>Red Rocks Amphitheatre</h4>
+                    <p>Morrison, CO</p>
+                </div>
+                <button class="btn">Tickets</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Stay Connected</h2>
+        <p style="font-size: 1.3rem; color: var(--muted); margin-bottom: 1rem;">Follow us for updates, new music, and
+            tour announcements</p>
+        <div class="social-links">
+            <a href="#" title="Spotify">♫</a>
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Facebook">f</a>
+            <a href="#" title="YouTube">▶</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="Email">✉</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Raised by Elephants. All rights reserved. Never forget the music.</p>
+    </footer>
+</div>
+
+<script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({behavior: 'smooth', block: 'start'});
+        });
+    });
+
+    // Hero CTA buttons
+    document.querySelector('.hero-cta .btn').addEventListener('click', () => {
+        document.querySelector('#music').scrollIntoView({behavior: 'smooth'});
+    });
+
+    document.querySelector('.hero-cta .btn-secondary').addEventListener('click', () => {
+        document.querySelector('#shows').scrollIntoView({behavior: 'smooth'});
+    });
+</script>
+</body>
+</html>
