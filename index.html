@@ -436,6 +436,33 @@
             font-size: 1.1rem;
         }
 
+        .show.past {
+            display: none;
+        }
+
+        .shows-list.show-past .show.past {
+            display: grid;
+            opacity: 0.5;
+        }
+
+        .past-shows-toggle {
+            display: block;
+            text-align: center;
+            margin: 0 auto 2rem;
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .past-shows-toggle:hover {
+            color: var(--secondary);
+        }
+
         /* Band Section */
         .band-section {
             padding: 8rem 2rem;
@@ -751,6 +778,7 @@
 
     <section id="shows" class="shows-section">
         <h2 class="section-title">2026 Shows</h2>
+        <button class="past-shows-toggle" type="button">Show past shows</button>
         <div class="shows-list">
             <div class="show">
                 <div class="show-date">
@@ -790,6 +818,24 @@
             </div>
             <div class="show">
                 <div class="show-date">
+                    MAY<br>22
+                </div>
+                <div class="show-details">
+                    <h4>Van's Dive Bar</h4>
+                    <p>Anchorage, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    MAY<br>23
+                </div>
+                <div class="show-details">
+                    <h4>Talkeetna Arts Festival</h4>
+                    <p>Talkeetna, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
                     MAY<br>30
                 </div>
                 <div class="show-details">
@@ -799,7 +845,34 @@
             </div>
             <div class="show">
                 <div class="show-date">
-                    June<br>19
+                    JUNE<br>6-7
+                </div>
+                <div class="show-details">
+                    <h4>Spenard Jazz Fest</h4>
+                    <p>Anchorage, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    JUNE<br>11
+                </div>
+                <div class="show-details">
+                    <h4>Palmer Alehouse</h4>
+                    <p>Palmer, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    JULY<br>18
+                </div>
+                <div class="show-details">
+                    <h4>Palmer Alehouse</h4>
+                    <p>Palmer, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    JUNE<br>19
                 </div>
                 <div class="show-details">
                     <h4>Chugach Fest</h4>
@@ -808,11 +881,29 @@
             </div>
             <div class="show">
                 <div class="show-date">
-                    July<br>18
+                    JULY<br>24
                 </div>
                 <div class="show-details">
-                    <h4>Palmer Alehouse</h4>
-                    <p>Palmer, AK</p>
+                    <h4>Bearpaw Brewing Company</h4>
+                    <p>Wasilla, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    JULY<br>25
+                </div>
+                <div class="show-details">
+                    <h4>Van's Dive Bar</h4>
+                    <p>Anchorage, AK</p>
+                </div>
+            </div>
+            <div class="show">
+                <div class="show-date">
+                    Aug<br>7
+                </div>
+                <div class="show-details">
+                    <h4>Flamingo Lounge</h4>
+                    <p>Seward, AK</p>
                 </div>
             </div>
             <div class="show">
@@ -829,7 +920,7 @@
                     Sept<br>18
                 </div>
                 <div class="show-details">
-                    <h4>Homestead Kitchen</h4>
+                    <h4>Fairview Inn</h4>
                     <p>Talkeetna, AK</p>
                 </div>
             </div>
@@ -935,6 +1026,49 @@
     document.querySelector('.hero-cta .btn-secondary').addEventListener('click', () => {
         document.querySelector('#shows').scrollIntoView({behavior: 'smooth'});
     });
+
+    // Hide past shows; toggle visibility via link
+    (function() {
+        const MONTHS = {
+            JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUNE: 5,
+            JUL: 6, JULY: 6, AUG: 7, SEP: 8, SEPT: 8, OCT: 9, NOV: 10, DEC: 11
+        };
+        const year = new Date().getFullYear();
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const showsList = document.querySelector('.shows-list');
+        const shows = showsList.querySelectorAll('.show');
+        let pastCount = 0;
+
+        shows.forEach(show => {
+            const dateEl = show.querySelector('.show-date');
+            if (!dateEl) return;
+            const parts = dateEl.innerText.trim().split(/\s+/);
+            if (parts.length < 2) return;
+            const month = MONTHS[parts[0].toUpperCase()];
+            if (month === undefined) return;
+            // Handle ranges like "6-7" — use the latest day
+            const dayPart = parts[1].split('-').pop();
+            const day = parseInt(dayPart, 10);
+            if (isNaN(day)) return;
+            const showDate = new Date(year, month, day);
+            if (showDate < today) {
+                show.classList.add('past');
+                pastCount++;
+            }
+        });
+
+        const toggle = document.querySelector('.past-shows-toggle');
+        if (pastCount === 0) {
+            toggle.style.display = 'none';
+            return;
+        }
+        toggle.addEventListener('click', () => {
+            const showing = showsList.classList.toggle('show-past');
+            toggle.textContent = showing ? 'Hide past shows' : 'Show past shows';
+        });
+    })();
 </script>
 </body>
 </html>
