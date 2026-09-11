@@ -64,6 +64,115 @@
       ]
     }
     </script>
+
+    <!-- Upcoming shows, generated from shows.json by build.py -->
+    <!-- BEGIN generated:events -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicEvent",
+        "name": "Raised by Elephants at Van's Dive Bar",
+        "startDate": "2026-09-12T23:00:00-08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Van's Dive Bar",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Anchorage",
+            "addressRegion": "AK",
+            "addressCountry": "US"
+          }
+        },
+        "performer": {
+          "@id": "https://raisedbyelephants.com/#band"
+        },
+        "organizer": {
+          "@type": "MusicGroup",
+          "name": "Raised by Elephants",
+          "url": "https://raisedbyelephants.com/"
+        },
+        "image": "https://raisedbyelephants.com/images/raised-by-elephants-logo-400.png",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://raisedbyelephants.com/#shows",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "price": "0"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicEvent",
+        "name": "Raised by Elephants at Fairview Inn",
+        "startDate": "2026-09-18T21:00:00-08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Fairview Inn",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Talkeetna",
+            "addressRegion": "AK",
+            "addressCountry": "US"
+          }
+        },
+        "performer": {
+          "@id": "https://raisedbyelephants.com/#band"
+        },
+        "organizer": {
+          "@type": "MusicGroup",
+          "name": "Raised by Elephants",
+          "url": "https://raisedbyelephants.com/"
+        },
+        "image": "https://raisedbyelephants.com/images/raised-by-elephants-logo-400.png",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://raisedbyelephants.com/#shows",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "price": "0"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicEvent",
+        "name": "Raised by Elephants at Odd Man Rush Brewing",
+        "startDate": "2026-09-25T19:00:00-08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Odd Man Rush Brewing",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Eagle River",
+            "addressRegion": "AK",
+            "addressCountry": "US"
+          }
+        },
+        "performer": {
+          "@id": "https://raisedbyelephants.com/#band"
+        },
+        "organizer": {
+          "@type": "MusicGroup",
+          "name": "Raised by Elephants",
+          "url": "https://raisedbyelephants.com/"
+        },
+        "image": "https://raisedbyelephants.com/images/raised-by-elephants-logo-400.png",
+        "offers": {
+          "@type": "Offer",
+          "url": "https://www.eventbrite.com/e/raised-by-elephants-at-odd-man-rush-brewing-tickets-1999735434516",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    ]
+    </script>
+<!-- END generated:events -->
     <style>
         :root {
             --primary: #1a1a1a;
@@ -871,6 +980,7 @@
         <h2 class="section-title">2026 Shows</h2>
         <button class="past-shows-toggle" type="button">Show past shows</button>
         <div class="shows-list">
+            <!-- BEGIN generated:shows -->
             <div class="show" data-date="2026-01-16">
                 <div class="show-date">
                     JAN<br>16
@@ -1183,7 +1293,7 @@
                     <span class="free-badge">Free</span>
                 </div>
             </div>
-            <div class="show" data-tickets="https://www.eventbrite.com/e/raised-by-elephants-at-odd-man-rush-brewing-tickets-1999735434516" data-date="2026-09-25" data-time="19:00">
+            <div class="show" data-date="2026-09-25" data-time="19:00" data-tickets="https://www.eventbrite.com/e/raised-by-elephants-at-odd-man-rush-brewing-tickets-1999735434516">
                 <div class="show-date">
                     SEP<br>25
                 </div>
@@ -1196,6 +1306,7 @@
                        class="btn ticket-btn">Tickets</a>
                 </div>
             </div>
+<!-- END generated:shows -->
             <div>
                 <br>
                 <p style="text-align: center">More coming soon...</p>
@@ -1299,129 +1410,27 @@
         document.querySelector('#shows').scrollIntoView({behavior: 'smooth'});
     });
 
-    // Hide past shows; toggle visibility via link. Also publish the upcoming ones as
-    // MusicEvent structured data so search engines can surface them.
+    // Hide past shows; toggle visibility via link. Show data and the MusicEvent
+    // structured data both come from shows.json via build.py — this only handles display.
     (function() {
-        const MONTHS = {
-            JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUNE: 5,
-            JUL: 6, JULY: 6, AUG: 7, SEP: 8, SEPT: 8, OCT: 9, NOV: 10, DEC: 11
-        };
-        const SITE = 'https://raisedbyelephants.com/';
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        // Prefer the explicit data-date; fall back to parsing the displayed month/day.
-        function showDateOf(show) {
-            const iso = show.dataset.date;
-            if (iso) {
-                const [y, m, d] = iso.split('-').map(Number);
-                if (y && m && d) return new Date(y, m - 1, d);
-            }
-            const dateEl = show.querySelector('.show-date');
-            if (!dateEl) return null;
-            const parts = dateEl.innerText.trim().split(/\s+/);
-            if (parts.length < 2) return null;
-            const month = MONTHS[parts[0].toUpperCase()];
-            if (month === undefined) return null;
-            // Handle ranges like "6-7" — use the latest day
-            const day = parseInt(parts[1].split('-').pop(), 10);
-            if (isNaN(day)) return null;
-            return new Date(new Date().getFullYear(), month, day);
-        }
-
-        function isoDate(date) {
-            const pad = n => String(n).padStart(2, '0');
-            return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
-        }
-
-        // Alaska time: AKDT (-08:00) from the 2nd Sunday in March to the 1st Sunday in
-        // November, AKST (-09:00) otherwise.
-        function alaskaOffset(date) {
-            const y = date.getFullYear();
-            const nthSunday = (month, n) => {
-                const d = new Date(y, month, 1);
-                d.setDate(1 + ((7 - d.getDay()) % 7) + (n - 1) * 7);
-                return d;
-            };
-            const start = nthSunday(2, 2);   // March
-            const end = nthSunday(10, 1);    // November
-            return (date >= start && date < end) ? '-08:00' : '-09:00';
-        }
-
-        // Google prefers a full timestamp; fall back to a bare date when we have no set time.
-        function startDateOf(show, date) {
-            const time = show.dataset.time;
-            if (!/^\d{2}:\d{2}$/.test(time || '')) return isoDate(date);
-            return isoDate(date) + 'T' + time + ':00' + alaskaOffset(date);
-        }
-
-        function eventFor(show, date) {
-            const title = (show.querySelector('.show-details h4') || {}).textContent;
-            if (!title) return null;
-            const where = ((show.querySelector('.show-details p') || {}).textContent || '').trim();
-            // Strip qualifiers the venue name doesn't include: "• EP Release", "w/ Powerplay"
-            const venue = title.split('\u2022')[0].split(/\s+w\//)[0].trim() || title.trim();
-
-            const place = {'@type': 'Place', name: venue};
-            const cityState = where.match(/^(.+),\s*([A-Z]{2})$/);
-            if (cityState) {
-                place.address = {
-                    '@type': 'PostalAddress',
-                    addressLocality: cityState[1].trim(),
-                    addressRegion: cityState[2],
-                    addressCountry: 'US'
-                };
-            }
-
-            const tickets = show.dataset.tickets;
-            return {
-                '@context': 'https://schema.org',
-                '@type': 'MusicEvent',
-                name: 'Raised by Elephants at ' + venue,
-                startDate: startDateOf(show, date),
-                eventStatus: 'https://schema.org/EventScheduled',
-                eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-                location: place,
-                performer: {'@id': SITE + '#band'},
-                organizer: {'@type': 'MusicGroup', name: 'Raised by Elephants', url: SITE},
-                image: SITE + 'images/raised-by-elephants-logo-400.png',
-                offers: {
-                    '@type': 'Offer',
-                    url: tickets || SITE + '#shows',
-                    price: tickets ? undefined : '0',
-                    priceCurrency: 'USD',
-                    availability: 'https://schema.org/InStock',
-                    validFrom: isoDate(new Date())
-                }
-            };
-        }
-
         const showsList = document.querySelector('.shows-list');
-        const shows = showsList.querySelectorAll('.show');
-        const upcoming = [];
+        const toggle = document.querySelector('.past-shows-toggle');
         let pastCount = 0;
 
-        shows.forEach(show => {
-            const date = showDateOf(show);
-            if (!date) return;
-            if (date < today) {
+        showsList.querySelectorAll('.show').forEach(show => {
+            const iso = show.dataset.date;
+            if (!iso) return;
+            const [y, m, d] = iso.split('-').map(Number);
+            if (!y || !m || !d) return;
+            if (new Date(y, m - 1, d) < today) {
                 show.classList.add('past');
                 pastCount++;
-                return;
             }
-            const event = eventFor(show, date);
-            if (event) upcoming.push(event);
         });
 
-        if (upcoming.length) {
-            const tag = document.createElement('script');
-            tag.type = 'application/ld+json';
-            // JSON.stringify drops the undefined `price` on ticketed shows.
-            tag.textContent = JSON.stringify(upcoming);
-            document.head.appendChild(tag);
-        }
-
-        const toggle = document.querySelector('.past-shows-toggle');
         if (pastCount === 0) {
             toggle.style.display = 'none';
             return;

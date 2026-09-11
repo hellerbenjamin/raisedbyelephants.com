@@ -1,3 +1,4 @@
 images/*
 .idea
 .idea/*
+__pycache__/

@@ -1,0 +1,170 @@
+{
+  "_comment": "Source of truth for the Shows section. Edit this, then run: python3 build.py",
+  "season": "2026 Shows",
+  "shows": [
+    {
+      "date": "2026-01-16",
+      "venue": "The Silver Fox Inn",
+      "city": "Wasilla, AK"
+    },
+    {
+      "date": "2026-02-14",
+      "venue": "Talkeetna Curling Club Bonspiel",
+      "city": "Talkeetna, AK"
+    },
+    {
+      "date": "2026-04-10",
+      "venue": "Humpy's Great Alaskan Alehouse",
+      "time": "21:30",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-05-16",
+      "venue": "Mermaid Fest",
+      "time": "15:50",
+      "city": "Seward, AK"
+    },
+    {
+      "date": "2026-05-22",
+      "venue": "Van's Dive Bar",
+      "time": "21:00",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-05-23",
+      "venue": "Talkeetna Arts Festival",
+      "city": "Talkeetna, AK"
+    },
+    {
+      "date": "2026-05-27",
+      "venue": "PINKFEST",
+      "city": "Details TBA"
+    },
+    {
+      "date": "2026-05-30",
+      "venue": "Music in the Park",
+      "time": "15:00",
+      "city": "Wasilla, AK"
+    },
+    {
+      "date": "2026-06-06",
+      "venue": "The Nave",
+      "time": "13:00",
+      "city": "Anchorage, AK",
+      "note": "Spenard Jazz Fest"
+    },
+    {
+      "date": "2026-06-07",
+      "venue": "Refuge Coffee",
+      "time": "17:00",
+      "city": "Anchorage, AK",
+      "note": "Spenard Jazz Fest"
+    },
+    {
+      "date": "2026-06-11",
+      "venue": "Palmer Alehouse",
+      "time": "19:00",
+      "city": "Palmer, AK"
+    },
+    {
+      "date": "2026-06-19",
+      "venue": "Chugach Fest",
+      "time": "21:00",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-07-02",
+      "venue": "Girdwood Raw Market",
+      "time": "18:00",
+      "city": "Girdwood, AK"
+    },
+    {
+      "date": "2026-07-03",
+      "venue": "Girdwood Forest Fair",
+      "time": "19:00",
+      "city": "Girdwood, AK"
+    },
+    {
+      "date": "2026-07-18",
+      "venue": "Palmer Alehouse",
+      "time": "16:00",
+      "city": "Palmer, AK"
+    },
+    {
+      "date": "2026-07-24",
+      "venue": "Bearpaw River Brewing",
+      "time": "18:00",
+      "city": "Wasilla, AK"
+    },
+    {
+      "date": "2026-07-25",
+      "venue": "Van's Dive Bar",
+      "time": "21:00",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-07-30",
+      "venue": "Tufted Puffin",
+      "time": "19:00",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-08-07",
+      "venue": "The Flamingo",
+      "time": "18:30",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-08-23",
+      "venue": "Sluicebox",
+      "time": "15:00",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-08-26",
+      "venue": "Lulu's Tents & Events",
+      "time": "19:00",
+      "city": "Wasilla, AK",
+      "note": "Fundraiser for Jeremiah"
+    },
+    {
+      "date": "2026-08-28",
+      "venue": "Homestead Kitchen",
+      "time": "14:00",
+      "city": "Talkeetna, AK"
+    },
+    {
+      "date": "2026-08-28",
+      "venue": "Mountain High Pizza Pie",
+      "time": "19:00",
+      "city": "Talkeetna, AK"
+    },
+    {
+      "date": "2026-09-06",
+      "venue": "Sluicebox",
+      "time": "15:00",
+      "city": "Anchorage, AK"
+    },
+    {
+      "date": "2026-09-12",
+      "venue": "Van's Dive Bar",
+      "time": "23:00",
+      "city": "Anchorage, AK",
+      "with": "Powerplay"
+    },
+    {
+      "date": "2026-09-18",
+      "venue": "Fairview Inn",
+      "time": "21:00",
+      "city": "Talkeetna, AK"
+    },
+    {
+      "date": "2026-09-25",
+      "venue": "Odd Man Rush Brewing",
+      "time": "19:00",
+      "city": "Eagle River, AK",
+      "note": "EP Release",
+      "tickets": "https://www.eventbrite.com/e/raised-by-elephants-at-odd-man-rush-brewing-tickets-1999735434516"
+    }
+  ]
+}
