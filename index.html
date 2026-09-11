@@ -27,6 +27,43 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:wght@300;400;600&display=swap"
           rel="stylesheet">
+
+    <!-- Structured data: band identity. Upcoming shows are emitted separately at the
+         bottom of the page, generated from the shows list so there's one source of truth. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "@id": "https://raisedbyelephants.com/#band",
+      "name": "Raised by Elephants",
+      "url": "https://raisedbyelephants.com/",
+      "logo": "https://raisedbyelephants.com/images/raised-by-elephants-logo.png",
+      "image": "https://raisedbyelephants.com/images/raised-by-elephants-logo-400.png",
+      "description": "Raised by Elephants is an Alaska-based band performing uplifting rock fused with sounds from around the world.",
+      "genre": ["Rock", "World", "Experimental Rock"],
+      "email": "booking@raisedbyelephants.com",
+      "foundingLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "AK",
+          "addressCountry": "US"
+        }
+      },
+      "member": [
+        {"@type": "Person", "name": "Benjamin Heller", "roleName": "Vocals / Guitar"},
+        {"@type": "Person", "name": "Joe Craig", "roleName": "Bass"},
+        {"@type": "Person", "name": "Eric Lovley", "roleName": "Drums"},
+        {"@type": "Person", "name": "Lincoln Maffe", "roleName": "Keys"}
+      ],
+      "sameAs": [
+        "https://open.spotify.com/artist/1LGfsFABmtgkuKoel0Dqzt",
+        "https://www.instagram.com/raisedbyelephants/",
+        "https://www.facebook.com/profile.php?id=61550082944756",
+        "https://www.youtube.com/channel/UCUWF3Sin3g9pkmDwveJnpow"
+      ]
+    }
+    </script>
     <style>
         :root {
             --primary: #1a1a1a;
@@ -450,8 +487,35 @@
             font-size: 1.1rem;
         }
 
+        .show-meta {
+            justify-self: end;
+        }
+
+        .show .ticket-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .free-badge {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            border: 1px solid rgba(138, 138, 138, 0.4);
+            padding: 0.4rem 0.9rem;
+            white-space: nowrap;
+        }
+
         .show.past {
             display: none;
+        }
+
+        /* A show that has already happened can't be attended — drop its badge/link */
+        .show.past .show-meta {
+            visibility: hidden;
         }
 
         .shows-list.show-past .show.past {
@@ -674,6 +738,11 @@
                 font-size: 2rem;
             }
 
+            /* Single-column on mobile: align the badge/link with the rest of the row */
+            .show-meta {
+                justify-self: start;
+            }
+
             .show-details h4 {
                 font-size: 1.4rem;
             }
@@ -802,7 +871,7 @@
         <h2 class="section-title">2026 Shows</h2>
         <button class="past-shows-toggle" type="button">Show past shows</button>
         <div class="shows-list">
-            <div class="show">
+            <div class="show" data-date="2026-01-16">
                 <div class="show-date">
                     JAN<br>16
                 </div>
@@ -810,8 +879,11 @@
                     <h4>The Silver Fox Inn</h4>
                     <p>Wasilla, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-02-14">
                 <div class="show-date">
                     FEB<br>14
                 </div>
@@ -819,8 +891,11 @@
                     <h4>Talkeetna Curling Club Bonspiel</h4>
                     <p>Talkeetna, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-04-10" data-time="21:30">
                 <div class="show-date">
                     APR<br>10
                 </div>
@@ -828,8 +903,11 @@
                     <h4>Humpy's Great Alaskan Alehouse</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-05-16" data-time="15:50">
                 <div class="show-date">
                     MAY<br>16
                 </div>
@@ -837,8 +915,11 @@
                     <h4>Mermaid Fest</h4>
                     <p>Seward, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-05-22" data-time="21:00">
                 <div class="show-date">
                     MAY<br>22
                 </div>
@@ -846,8 +927,11 @@
                     <h4>Van's Dive Bar</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-05-23">
                 <div class="show-date">
                     MAY<br>23
                 </div>
@@ -855,8 +939,11 @@
                     <h4>Talkeetna Arts Festival</h4>
                     <p>Talkeetna, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-05-27">
                 <div class="show-date">
                     MAY<br>27
                 </div>
@@ -864,8 +951,11 @@
                     <h4>PINKFEST</h4>
                     <p>Details TBA</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-05-30" data-time="15:00">
                 <div class="show-date">
                     MAY<br>30
                 </div>
@@ -873,8 +963,11 @@
                     <h4>Music in the Park</h4>
                     <p>Wasilla, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-06-06" data-time="13:00">
                 <div class="show-date">
                     JUN<br>6
                 </div>
@@ -882,8 +975,11 @@
                     <h4>The Nave &bull; Spenard Jazz Fest</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-06-07" data-time="17:00">
                 <div class="show-date">
                     JUN<br>7
                 </div>
@@ -891,8 +987,11 @@
                     <h4>Refuge Coffee &bull; Spenard Jazz Fest</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-06-11" data-time="19:00">
                 <div class="show-date">
                     JUN<br>11
                 </div>
@@ -900,8 +999,11 @@
                     <h4>Palmer Alehouse</h4>
                     <p>Palmer, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-06-19" data-time="21:00">
                 <div class="show-date">
                     JUN<br>19
                 </div>
@@ -909,8 +1011,11 @@
                     <h4>Chugach Fest</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-07-02" data-time="18:00">
                 <div class="show-date">
                     JUL<br>2
                 </div>
@@ -918,8 +1023,11 @@
                     <h4>Girdwood Raw Market</h4>
                     <p>Girdwood, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-07-03" data-time="19:00">
                 <div class="show-date">
                     JUL<br>3
                 </div>
@@ -927,8 +1035,11 @@
                     <h4>Girdwood Forest Fair</h4>
                     <p>Girdwood, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-07-18" data-time="16:00">
                 <div class="show-date">
                     JUL<br>18
                 </div>
@@ -936,8 +1047,11 @@
                     <h4>Palmer Alehouse</h4>
                     <p>Palmer, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-07-24" data-time="18:00">
                 <div class="show-date">
                     JUL<br>24
                 </div>
@@ -945,8 +1059,11 @@
                     <h4>Bearpaw River Brewing</h4>
                     <p>Wasilla, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-07-25" data-time="21:00">
                 <div class="show-date">
                     JUL<br>25
                 </div>
@@ -954,8 +1071,11 @@
                     <h4>Van's Dive Bar</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-07-30" data-time="19:00">
                 <div class="show-date">
                     JUL<br>30
                 </div>
@@ -963,8 +1083,11 @@
                     <h4>Tufted Puffin</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-08-07" data-time="18:30">
                 <div class="show-date">
                     AUG<br>7
                 </div>
@@ -972,8 +1095,11 @@
                     <h4>The Flamingo</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-08-23" data-time="15:00">
                 <div class="show-date">
                     AUG<br>23
                 </div>
@@ -981,8 +1107,11 @@
                     <h4>Sluicebox</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-08-26" data-time="19:00">
                 <div class="show-date">
                     AUG<br>26
                 </div>
@@ -990,8 +1119,11 @@
                     <h4>Lulu's Tents &amp; Events &bull; Fundraiser for Jeremiah</h4>
                     <p>Wasilla, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-08-28" data-time="14:00">
                 <div class="show-date">
                     AUG<br>28
                 </div>
@@ -999,8 +1131,11 @@
                     <h4>Homestead Kitchen</h4>
                     <p>Talkeetna, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-08-28" data-time="19:00">
                 <div class="show-date">
                     AUG<br>28
                 </div>
@@ -1008,8 +1143,11 @@
                     <h4>Mountain High Pizza Pie</h4>
                     <p>Talkeetna, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-09-06" data-time="15:00">
                 <div class="show-date">
                     SEP<br>6
                 </div>
@@ -1017,8 +1155,11 @@
                     <h4>Sluicebox</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-09-12" data-time="23:00">
                 <div class="show-date">
                     SEP<br>12
                 </div>
@@ -1026,8 +1167,11 @@
                     <h4>Van's Dive Bar w/ Powerplay</h4>
                     <p>Anchorage, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-date="2026-09-18" data-time="21:00">
                 <div class="show-date">
                     SEP<br>18
                 </div>
@@ -1035,14 +1179,21 @@
                     <h4>Fairview Inn</h4>
                     <p>Talkeetna, AK</p>
                 </div>
+                <div class="show-meta">
+                    <span class="free-badge">Free</span>
+                </div>
             </div>
-            <div class="show">
+            <div class="show" data-tickets="https://www.eventbrite.com/e/raised-by-elephants-at-odd-man-rush-brewing-tickets-1999735434516" data-date="2026-09-25" data-time="19:00">
                 <div class="show-date">
                     SEP<br>25
                 </div>
                 <div class="show-details">
                     <h4>Odd Man Rush Brewing &bull; EP Release</h4>
                     <p>Eagle River, AK</p>
+                </div>
+                <div class="show-meta">
+                    <a href="https://www.eventbrite.com/e/raised-by-elephants-at-odd-man-rush-brewing-tickets-1999735434516" target="_blank" rel="noopener"
+                       class="btn ticket-btn">Tickets</a>
                 </div>
             </div>
             <div>
@@ -1148,37 +1299,127 @@
         document.querySelector('#shows').scrollIntoView({behavior: 'smooth'});
     });
 
-    // Hide past shows; toggle visibility via link
+    // Hide past shows; toggle visibility via link. Also publish the upcoming ones as
+    // MusicEvent structured data so search engines can surface them.
     (function() {
         const MONTHS = {
             JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUNE: 5,
             JUL: 6, JULY: 6, AUG: 7, SEP: 8, SEPT: 8, OCT: 9, NOV: 10, DEC: 11
         };
-        const year = new Date().getFullYear();
+        const SITE = 'https://raisedbyelephants.com/';
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
+        // Prefer the explicit data-date; fall back to parsing the displayed month/day.
+        function showDateOf(show) {
+            const iso = show.dataset.date;
+            if (iso) {
+                const [y, m, d] = iso.split('-').map(Number);
+                if (y && m && d) return new Date(y, m - 1, d);
+            }
+            const dateEl = show.querySelector('.show-date');
+            if (!dateEl) return null;
+            const parts = dateEl.innerText.trim().split(/\s+/);
+            if (parts.length < 2) return null;
+            const month = MONTHS[parts[0].toUpperCase()];
+            if (month === undefined) return null;
+            // Handle ranges like "6-7" — use the latest day
+            const day = parseInt(parts[1].split('-').pop(), 10);
+            if (isNaN(day)) return null;
+            return new Date(new Date().getFullYear(), month, day);
+        }
+
+        function isoDate(date) {
+            const pad = n => String(n).padStart(2, '0');
+            return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
+        }
+
+        // Alaska time: AKDT (-08:00) from the 2nd Sunday in March to the 1st Sunday in
+        // November, AKST (-09:00) otherwise.
+        function alaskaOffset(date) {
+            const y = date.getFullYear();
+            const nthSunday = (month, n) => {
+                const d = new Date(y, month, 1);
+                d.setDate(1 + ((7 - d.getDay()) % 7) + (n - 1) * 7);
+                return d;
+            };
+            const start = nthSunday(2, 2);   // March
+            const end = nthSunday(10, 1);    // November
+            return (date >= start && date < end) ? '-08:00' : '-09:00';
+        }
+
+        // Google prefers a full timestamp; fall back to a bare date when we have no set time.
+        function startDateOf(show, date) {
+            const time = show.dataset.time;
+            if (!/^\d{2}:\d{2}$/.test(time || '')) return isoDate(date);
+            return isoDate(date) + 'T' + time + ':00' + alaskaOffset(date);
+        }
+
+        function eventFor(show, date) {
+            const title = (show.querySelector('.show-details h4') || {}).textContent;
+            if (!title) return null;
+            const where = ((show.querySelector('.show-details p') || {}).textContent || '').trim();
+            // Strip qualifiers the venue name doesn't include: "• EP Release", "w/ Powerplay"
+            const venue = title.split('\u2022')[0].split(/\s+w\//)[0].trim() || title.trim();
+
+            const place = {'@type': 'Place', name: venue};
+            const cityState = where.match(/^(.+),\s*([A-Z]{2})$/);
+            if (cityState) {
+                place.address = {
+                    '@type': 'PostalAddress',
+                    addressLocality: cityState[1].trim(),
+                    addressRegion: cityState[2],
+                    addressCountry: 'US'
+                };
+            }
+
+            const tickets = show.dataset.tickets;
+            return {
+                '@context': 'https://schema.org',
+                '@type': 'MusicEvent',
+                name: 'Raised by Elephants at ' + venue,
+                startDate: startDateOf(show, date),
+                eventStatus: 'https://schema.org/EventScheduled',
+                eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+                location: place,
+                performer: {'@id': SITE + '#band'},
+                organizer: {'@type': 'MusicGroup', name: 'Raised by Elephants', url: SITE},
+                image: SITE + 'images/raised-by-elephants-logo-400.png',
+                offers: {
+                    '@type': 'Offer',
+                    url: tickets || SITE + '#shows',
+                    price: tickets ? undefined : '0',
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/InStock',
+                    validFrom: isoDate(new Date())
+                }
+            };
+        }
+
         const showsList = document.querySelector('.shows-list');
         const shows = showsList.querySelectorAll('.show');
+        const upcoming = [];
         let pastCount = 0;
 
         shows.forEach(show => {
-            const dateEl = show.querySelector('.show-date');
-            if (!dateEl) return;
-            const parts = dateEl.innerText.trim().split(/\s+/);
-            if (parts.length < 2) return;
-            const month = MONTHS[parts[0].toUpperCase()];
-            if (month === undefined) return;
-            // Handle ranges like "6-7" — use the latest day
-            const dayPart = parts[1].split('-').pop();
-            const day = parseInt(dayPart, 10);
-            if (isNaN(day)) return;
-            const showDate = new Date(year, month, day);
-            if (showDate < today) {
+            const date = showDateOf(show);
+            if (!date) return;
+            if (date < today) {
                 show.classList.add('past');
                 pastCount++;
+                return;
             }
+            const event = eventFor(show, date);
+            if (event) upcoming.push(event);
         });
+
+        if (upcoming.length) {
+            const tag = document.createElement('script');
+            tag.type = 'application/ld+json';
+            // JSON.stringify drops the undefined `price` on ticketed shows.
+            tag.textContent = JSON.stringify(upcoming);
+            document.head.appendChild(tag);
+        }
 
         const toggle = document.querySelector('.past-shows-toggle');
         if (pastCount === 0) {
